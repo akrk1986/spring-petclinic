@@ -14,7 +14,7 @@ ADD . /amir
 
 
 RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH 
+RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH && ./mvnw spring-boot:build-info
 #RUN mvn -h
 
 #RUN git clone --branch amir https://github.com/akrk1986/spring-petclinic.git amir
