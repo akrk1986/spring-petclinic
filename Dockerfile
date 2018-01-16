@@ -9,13 +9,18 @@ RUN wget -q -O /tmp/apache-maven-3.5.2-bin.tar.gz http://apache.spd.co.il/maven/
 WORKDIR /opt
 RUN tar xf /tmp/apache-maven-3.5.2-bin.tar.gz
 
-RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-RUN PATH=/opt/apache-maven-3.5.2/bin:$PATH && mvn -h
-#RUN mvn -h
-
 WORKDIR /amir
 ADD . /amir
-#RUN git clone --branch amir https://github.com/akrk1986/spring-petclinic.git amir
 
+
+RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH 
+#RUN mvn -h
+
+#RUN git clone --branch amir https://github.com/akrk1986/spring-petclinic.git amir
 #CMD ["mvn", "-h"]
-CMD bash
+#CMD bash
+
+EXPOSE 8080
+
+CMD ["./mvnw", "spring-boot:run"]
