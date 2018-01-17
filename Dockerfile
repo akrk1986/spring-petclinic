@@ -12,9 +12,9 @@ RUN tar xf /tmp/apache-maven-3.5.2-bin.tar.gz
 WORKDIR /amir
 ADD . /amir
 
-
 RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH && ./mvnw spring-boot:build-info && ./mvnw spring-boot:start 
+#RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH && ./mvnw spring-boot:build-info && ./mvnw spring-boot:start 
+RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH 
 
 EXPOSE 8080
 
