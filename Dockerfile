@@ -13,9 +13,11 @@ WORKDIR /amir
 ADD . /amir
 
 RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-#RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH && ./mvnw spring-boot:build-info && ./mvnw spring-boot:start 
 RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH 
-
+RUN ./mvnw spring-boot:build-info
+#RUN export PATH=/opt/apache-maven-3.5.2/bin:$PATH && ./mvnw spring-boot:run
+ 
 EXPOSE 8080
 
-CMD ["./mvnw", "spring-boot:run"]
+#CMD ["/bin/bash", "-c", "./mvnw spring-boot:run >/tmp/pc.OUT 2>/tmp/pc.ERR"]
+CMD ["/bin/bash", "-c", "./mvnw spring-boot:run"]
