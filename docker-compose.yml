@@ -9,7 +9,7 @@ mysql:
     - "./conf.d:/etc/mysql/conf.d:ro"
     
 pet-clinic-01:
-    build: .
+    image: pet-clinic-01
     container_name: pet-clinic-01
     links:
      - mysql:mysql
@@ -17,7 +17,7 @@ pet-clinic-01:
      - "3001:8080"
 
 pet-clinic-02:
-    build: .
+    image: pet-clinic-02
     container_name: pet-clinic-02
     links:
      - mysql:mysql
