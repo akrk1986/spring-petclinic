@@ -14,7 +14,7 @@ pet-clinic-01:
     links:
      - mysql:mysql
     ports:
-     - "3000:3000"
+     - "3001:3001"
 
 pet-clinic-02:
     build: .
@@ -22,10 +22,10 @@ pet-clinic-02:
     links:
      - mysql:mysql
     ports:
-     - "3000:3000"
+     - "3002:3002"
 
 ngnx:
-    build: ngnx/.
+    image: ngnx
     container_name: ngnx
     links:
      - pet-clinic-01:pet-clinic-01
