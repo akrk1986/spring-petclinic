@@ -7,3 +7,30 @@ mysql:
     - MYSQL_DATABASE=test
   volumes:
     - "./conf.d:/etc/mysql/conf.d:ro"
+    
+pet-clinic-01:
+    build: .
+    container_name: pet-clinic-01
+    links:
+     - mysql:mysql
+    ports:
+     - "3000:3000"
+
+pet-clinic-02:
+    build: .
+    container_name: pet-clinic-02
+    links:
+     - mysql:mysql
+    ports:
+     - "3000:3000"
+
+ngnx:
+    build: ngnx/.
+    container_name: ngnx
+    links:
+     - pet-clinic-01:pet-clinic-01
+     - pet-clinic-02:pet-clinic-02
+    ports:
+     - "80:80"
+     - "443:443"
+     - "8080:8080"
