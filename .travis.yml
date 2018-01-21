@@ -1,2 +1,4 @@
-language: java
-jdk: oraclejdk8
+script:
+  # 1. Override default values in the POM, which are picked up by the app's application.properties .
+  # 2. spring-boot does not have a 'test' goal, so we use Maven directly.
+  - /bin/bash ./mvnw test -Dwhich.db=hsqldb -Ddatasource.url=jdbc:hsqldb:file:/tmp/petclinic
