@@ -8,6 +8,5 @@ ENV MYSQL_DATABASE test
 
 ADD . /mysql-init
 WORKDIR /mysql-init
-#COPY *.sql /mysql-init
 
-ENTRYPOINT ["/bin/bash", "/mysql-init/db-init.sh"]
+#ENTRYPOINT ["/bin/bash", "/mysql-init/db-init.sh"]
