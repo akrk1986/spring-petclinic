@@ -25,7 +25,7 @@ pet-clinic-02:
      - "3002:8080"
 
 ngnx:
-    image: ngnx
+    image: pc-ngnx
     container_name: ngnx
     links:
      - pet-clinic-01:pet-clinic-01
