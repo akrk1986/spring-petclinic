@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt update && apt install -y --no-install-recommends git wget openjdk-8-jdk
+RUN apt update && apt-get install -y --no-install-recommends git wget openjdk-8-jdk
 
 # Maven
 RUN wget -q -O /tmp/apache-maven-3.5.2-bin.tar.gz http://apache.spd.co.il/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz 

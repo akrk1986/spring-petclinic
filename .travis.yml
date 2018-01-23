@@ -20,3 +20,6 @@ before_script:
 
 script: 
   - ./do-it-all.sh build-only
+  
+after_script:
+  - docker images
