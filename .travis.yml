@@ -16,14 +16,4 @@ install: true
 before_script: true
 
 script: 
-  - echo "Building spring-boot app #1"
-  - docker build -t pet-clinic-01 .
-  - echo "Building spring-boot app #2"
-  - docker build -t pet-clinic-02 .
-  - echo "Spinning up docker-compose"
-  - docker-compose down
-  - docker-compose up -d
-  - echo "Docker-compose status:"
-  - docker-compose ps
-  - echo "dc down"
-  - docker-compose down
+  - ./do-it-all.sh
