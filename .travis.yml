@@ -20,18 +20,18 @@ script:
   - docker build -t pet-clinic-01 .
   - echo "Building spring-boot app #2"
   - docker build -t pet-clinic-02 .
-
-# deploy
-
-before_deploy: true
-
-deploy:
   - echo "Spinning up docker-compose"
   - docker-compose down
   - docker-compose up -d
   - echo "Docker-compose status:"
   - docker-compose ps
-
-after_deploy:
   - echo "dc down"
   - docker-compose down
+
+# deploy
+
+before_deploy: true
+
+deploy: true
+
+after_deploy: true
