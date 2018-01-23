@@ -17,6 +17,12 @@ function check_rc {
     fi
 }
 
+build_only=0
+
+if [ "$1" = "build-only" ]; then
+    build_only=1
+fi
+
 stepper "Building spring-boot app #1"
 docker build -t pet-clinic-01 .
 check_rc $? "Building container 1"
@@ -25,11 +31,16 @@ stepper "Building spring-boot app #2"
 docker build -t pet-clinic-02 .
 check_rc $? "Building container 2"
 
-stepper "Spinning up docker-compose"
+if [ ${build_only} -eq 1 ]; then
+    stepper "docker-compose BUILD only"
+    docker-compose build
+else
+    stepper "Spinning up docker-compose"
 
-docker-compose down
-docker-compose up -d
-check_rc $? "docker-compose up"
+    docker-compose down
+    docker-compose up -d
+    check_rc $? "docker-compose up"
 
-stepper "Docker-compose status:"
-docker-compose ps
+    stepper "Docker-compose status:"
+    docker-compose ps
+fi

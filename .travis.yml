@@ -19,4 +19,4 @@ before_script:
   - sudo /etc/init.d/mysql stop
 
 script: 
-  - ./do-it-all.sh
+  - ./do-it-all.sh build-only
