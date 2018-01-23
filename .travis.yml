@@ -13,7 +13,10 @@ install: true
 
 # build
 
-before_script: true
+sudo: required
+
+before_script:
+  - sudo /etc/init.d/mysql stop
 
 script: 
   - ./do-it-all.sh
