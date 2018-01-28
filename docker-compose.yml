@@ -5,6 +5,12 @@ services:
         container_name: pc-mysql
         ports:
           - "3306:3306"
+        healthcheck:
+          test: ["CMD", "mysqladmin", "ping", "--silent"]
+          interval: 1m30s
+          timeout: 15s
+          retries: 3
+          #start_period: 1m1s
 
     pet-clinic-01:
         image: pet-clinic-01
@@ -17,7 +23,7 @@ services:
          - mysql
 
     pet-clinic-02:
-        image: pet-clinic-02
+        image: pet-clinic-01
         container_name: pet-clinic-02
         links:
          - mysql:mysql
