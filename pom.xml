@@ -15,21 +15,19 @@
   <name>petclinic</name>
 
   <properties>
-
     <!-- Generic properties -->
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
     <!-- Web dependencies -->
     <webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
     <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
     <webjars-jquery.version>2.2.4</webjars-jquery.version>
     <wro4j.version>1.8.0</wro4j.version>
     <thymeleaf.version>3.0.6.RELEASE</thymeleaf.version>
-
     <cobertura.version>2.7</cobertura.version>
-
+    <!-- spring-boot-maven-plugin -->
+    <skip.it>false</skip.it>
   </properties>
 
   <dependencies>
@@ -118,13 +116,43 @@
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.20.1</version>
+          <configuration>
+            <skipTests>${skip.it}</skipTests>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>    
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <executions>
           <execution>
-            <!-- Spring Boot Actuator displays build-related information 
+            <id>pre-integration-test</id>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <configuration>
+              <skip>${skip.it}</skip>
+            </configuration>
+          </execution>
+          <execution>
+            <id>post-integration-test</id>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+            <configuration>
+              <skip>${skip.it}</skip>
+            </configuration>
+          </execution>
+          <execution>
+            <!-- Spring Boot Actuator displays build-related information
               if a META-INF/build-info.properties file is present -->
             <goals>
               <goal>build-info</goal>
@@ -157,7 +185,7 @@
         </executions>
       </plugin>
 
-      <!-- Spring Boot Actuator displays build-related information if a git.properties 
+      <!-- Spring Boot Actuator displays build-related information if a git.properties
         file is present at the classpath -->
       <plugin>
         <groupId>pl.project13.maven</groupId>
