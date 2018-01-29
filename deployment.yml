@@ -23,11 +23,11 @@ spec:
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
-        - name: pet-clinic-02
-          image: gcr.io/pet-clinic-193610/pet-clinic:gcp-1
-          imagePullPolicy: Always
-          ports:
-          - containerPort: 8080
+        #- name: pet-clinic-02
+        #  image: gcr.io/pet-clinic-193610/pet-clinic:gcp-1
+        #  imagePullPolicy: Always
+        #  ports:
+        #  - containerPort: 8080
         #- name: nginx
         #  image: gcr.io/pet-clinic-193610/nginx:gcp-1
         #  imagePullPolicy: Always
