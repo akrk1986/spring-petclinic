@@ -15,7 +15,7 @@ RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre && export PATH=/opt/a
 #RUN ./mvnw spring-boot:repackage -Dskip.it=true
 
 # This will skip the tests
-RUN ./mvnw package -Dskip.it=true
+RUN ./mvnw package -DskipTests=true
 
 EXPOSE 8080
 
