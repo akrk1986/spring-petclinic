@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pet-clinic
+  labels:
+    #Project ID
+    app: pet-clinic-193610
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pet-clinic
+    spec:
+      containers:
+        - name: mysql
+          image: gcr.io/pet-clinic-193610/mysql:gcp-1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3306
+        - name: pet-clinic-01
+          image: gcr.io/pet-clinic-193610/pet-clinic:gcp-1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
+        - name: pet-clinic-02
+          image: gcr.io/pet-clinic-193610/pet-clinic:gcp-1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
+        #- name: nginx
+        #  image: gcr.io/pet-clinic-193610/nginx:gcp-1
+        #  imagePullPolicy: Always
+        #  ports:
+        #  - containerPort: 8081
